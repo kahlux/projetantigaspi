@@ -24,15 +24,10 @@ public class UserService implements UserDetailsService {
     }
 
     public void signUpUser(User user) {
-        boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
-
-        if(userExists) {
-            throw new IllegalStateException("Cet Email est déjà utilisé !");
-        }
-
         //sauvegarde de l'utilisateur avec un mot de passe crypté
         String encodedPassword = passwordEncoder.bCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(encodedPassword);
+        user.setRole(UserRole.USER);
         userRepository.save(user);
     }
 }
