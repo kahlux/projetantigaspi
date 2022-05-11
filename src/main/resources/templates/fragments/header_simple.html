@@ -1,9 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <title></title>
+  <link th:href="@{/css/bootstrap.min.css}" href="../../static/css/bootstrap.min.css" rel="stylesheet"/>
+  <link th:href="@{/css/main.css}" href="../../static/css/main.css" rel="stylesheet">
 </head>
 <body>
+  <nav th:fragment="header" class="navbar navbar-light bg-light shadow-sm justify-content-between p-3 fixed-top">
+    <span class="navbar-brand">
+      <strong>AntiGaspi</strong>
+    </span>
+    <div class="d-flex align-items-center">
+      <a href="/login" class="btn p-1 me-3 text-decoration-none">Connexion</a>
+      <a class="btn btn-outline-success py-1 px-3" href="/sign-in/user">Inscription</a>
+    </div>
+  </nav>
 
+  <script th:src="@{/js/jquery.min.js}" src="../../static/js/jquery.min.js" rel="script"></script>
+  <script th:src="@{/js/bootstrap.min.js}" src="../../static/js/bootstrap.min.js" rel="script"></script>
 </body>
 </html>

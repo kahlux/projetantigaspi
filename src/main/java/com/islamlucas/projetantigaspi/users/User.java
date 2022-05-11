@@ -1,5 +1,6 @@
 package com.islamlucas.projetantigaspi.users;
 
+import com.islamlucas.projetantigaspi.shop.Shop;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,34 +28,25 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "first_name", length = 75)
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name", length = 80)
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "password", length = 64)
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "email", unique = true, length = 115)
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    public User(
-            String firstName,
-            String lastName,
-            String email,
-            String password,
-            UserRole role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
+    @ManyToOne
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
