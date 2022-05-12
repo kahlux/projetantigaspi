@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Connexion</title>
-  <link th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css" rel="stylesheet"/>
-  <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+  <link th:href="@{/css/main.css}" rel="stylesheet">
+  <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
 <div class="antigaspi-background"></div>
@@ -12,7 +14,7 @@
 <div th:insert="fragments/header_simple.html :: header"></div>
 
 <div class="d-flex h-100 align-items-center justify-content-center">
-  <form class="card p-4 shadow-sm border-dark border-3 rounded-3" method="post" th:action="@{/login}">
+  <form class="card p-4 pb-2 shadow-sm border-dark border-3 rounded-3" method="post" th:action="@{/login}">
     <h2 class="mb-3">Connexion</h2>
 
     <div th:if="${param.error}" class="alert alert-danger">
@@ -31,12 +33,9 @@
 
       <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Se connecter</button>
 
-      <p>Vous n'êtes pas enregistré ? <a href="/sign-in/user">Créer un compte</a></p>
+      <p>Vous n'êtes pas enregistré(e) ? <a href="/sign-in/user">Créer un compte</a></p>
     </div>
   </form>
 </div>
-
-<script th:src="@{/js/jquery.min.js}" src="../static/js/jquery.min.js" rel="script"></script>
-<script th:src="@{/js/bootstrap.min.js}" src="../static/js/bootstrap.min.js" rel="script"></script>
 </body>
 </html>

@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Enregistrement</title>
-  <link th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css" rel="stylesheet"/>
-  <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+  <link th:href="@{/css/main.css}" rel="stylesheet">
+  <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
 <div class="antigaspi-background"></div>
@@ -12,7 +14,7 @@
 <div th:insert="fragments/header_simple.html :: header"></div>
 
 <div class="d-flex h-100 align-items-center justify-content-center">
-  <form class="card p-4 shadow-sm border-dark border-3 rounded-3" method="POST" th:action="@{/sign-in/user}" th:object="${userForm}">
+  <form class="card p-4 pb-2 shadow-sm border-dark border-3 rounded-3" method="POST" th:action="@{/sign-in/user}" th:object="${userForm}">
     <h2>Création de votre compte</h2>
 
     <p class="mb-3">Renseignez vos informations :</p>
@@ -43,8 +45,5 @@
     <p>Vous êtes un(e) professionel(le) ? <a href="/sign-in/pro">Cliquez ici</a></p>
   </form>
 </div>
-
-<script th:src="@{/js/jquery.min.js}" src="../static/js/jquery.min.js" rel="script"></script>
-<script th:src="@{/js/bootstrap.min.js}" src="../static/js/bootstrap.min.js" rel="script"></script>
 </body>
 </html>

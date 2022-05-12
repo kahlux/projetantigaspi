@@ -29,6 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .disable()
             .authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/images/**", "/sign-in/**", "/login*").permitAll()
+                .antMatchers("/pro/**").hasRole("SELLER")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -44,7 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .sessionManagement()
-                .invalidSessionUrl("/invalidSession.html")
                 .maximumSessions(1).sessionRegistry(sessionRegistry()).and()
                 .sessionFixation().none();
     }

@@ -23,3 +23,7 @@ body {
     -ms-filter: blur(8px);
     filter: blur(8px);
 }
+
+.big-search-bar {
+    width: 420px !important;
+}
