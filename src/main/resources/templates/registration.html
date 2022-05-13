@@ -14,7 +14,7 @@
 <div th:insert="fragments/header_simple.html :: header"></div>
 
 <div class="d-flex h-100 align-items-center justify-content-center">
-  <form class="card p-4 pb-2 shadow-sm border-dark border-3 rounded-3" method="POST" th:action="@{/sign-in/user}" th:object="${userForm}">
+  <form class="card p-4 pb-2 shadow-sm border-dark border-3 rounded-3 bg-light" method="POST" th:action="@{/sign-in/user}" th:object="${userForm}">
     <h2>Création de votre compte</h2>
 
     <p class="mb-3">Renseignez vos informations :</p>

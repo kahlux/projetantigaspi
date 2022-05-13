@@ -11,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @With
-@Table(name="category", schema="public")
+@Table(name="shop_category", schema="public")
 public class Category {
 
     @Id

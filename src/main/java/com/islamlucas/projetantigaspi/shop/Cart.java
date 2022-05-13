@@ -1,4 +1,4 @@
-package com.islamlucas.projetantigaspi.cart;
+package com.islamlucas.projetantigaspi.shop;
 
 import com.islamlucas.projetantigaspi.shop.Shop;
 import lombok.*;
@@ -25,9 +25,6 @@ public class Cart {
     @ManyToOne
     @JoinColumn(name = "shop_id")
     private Shop shop;
-
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-    private List<Item> items = new ArrayList<>();
 
     @Column(name = "nom")
     private String libelle;

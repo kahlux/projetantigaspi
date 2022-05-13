@@ -1,6 +1,5 @@
 package com.islamlucas.projetantigaspi.shop;
 
-import com.islamlucas.projetantigaspi.cart.Cart;
 import com.islamlucas.projetantigaspi.users.User;
 import lombok.*;
 

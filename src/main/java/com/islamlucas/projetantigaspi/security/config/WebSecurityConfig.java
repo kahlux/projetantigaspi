@@ -1,5 +1,6 @@
 package com.islamlucas.projetantigaspi.security.config;
 
+import com.islamlucas.projetantigaspi.security.PasswordEncoder;
 import com.islamlucas.projetantigaspi.users.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -28,14 +29,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf()
             .disable()
             .authorizeRequests()
-                .antMatchers("/css/**", "/js/**", "/images/**", "/sign-in/**", "/login*").permitAll()
+                .antMatchers("/css/**", "/js/**", "/images/**", "/sign-in/**", "/login*", "/favicon.ico").permitAll()
                 .antMatchers("/pro/**").hasRole("SELLER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home")
+                .defaultSuccessUrl("/home", true)
                 .failureUrl("/login?error=true")
                 .permitAll()
                 .and()
@@ -55,8 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) {
-        auth.authenticationProvider(daoAuthenticationProvider());
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(this.daoAuthenticationProvider());
     }
 
     @Bean

@@ -13,7 +13,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <span class="navbar-brand">
+    <span class="navbar-brand d-flex">
       <img class="mr-1" src="../../static/images/logo.png" th:src="@{/images/logo.png}" width="32" height="32">
       <strong>AntiGaspi</strong>
     </span>
@@ -28,9 +28,12 @@
         <li class="nav-item">
           <a class="nav-link" href="/about">Concept</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about"></a>
+        </li>
       </ul>
-      <form class="form-inline">
-        <input type="search" class="form-control rounded-pill big-search-bar" placeholder="Rechercher..." aria-label="Search">
+      <form action="post" th:action="@{/search}" class="form-inline">
+        <input type="search" required class="form-control rounded-pill big-search-bar" name="q" placeholder="Rechercher..." aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0 d-none" type="submit">
           Search
         </button>
@@ -60,7 +63,7 @@
               Se déconnecter
             </a>
 
-            <div sec:authorize="hasRole('SELLER')">
+            <div sec:authorize="hasAuthority('SELLER')">
               <hr class="m-2">
 
               <a class="dropdown-item px-2" href="/pro">
@@ -71,7 +74,7 @@
               </a>
             </div>
 
-            <div sec:authorize="hasRole('ADMIN')">
+            <div sec:authorize="hasAuthority('ADMIN')">
               <hr class="m-2">
 
               <a class="dropdown-item px-2" href="/admin">
