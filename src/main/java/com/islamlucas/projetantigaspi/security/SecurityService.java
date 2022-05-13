@@ -7,6 +7,9 @@ public interface SecurityService {
 
 
     void autoLogin(String email, String password, HttpServletRequest request);
+
     void autoLogin(String email, String password);
+
+}
 
     
