@@ -27,10 +27,7 @@ public class SecurityServiceImpl implements SecurityService {
         return authentication.isAuthenticated();
     }
 
-    @Override
-    public void autoLogin(String email, String password) {
 
-    }
 
     @Override
     public void autoLogin(String login, String password, HttpServletRequest request) {
