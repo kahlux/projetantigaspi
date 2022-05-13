@@ -67,7 +67,14 @@ public class RegistrationController {
 
     @PostMapping("/sign-in/pro")
     public String registerPro(@ModelAttribute("userForm") User userForm, @ModelAttribute("shopForm") Shop shopForm, BindingResult bindingResult) {
-        registrationValidator.validate(userForm, bindingResult);
+            System.out.println(shopForm);
+            System.out.println(userForm);
+            if(userForm.getId()!=null){
+                registrationValidator.validate(userForm, bindingResult);
+            }
+
+
+
 
         if (bindingResult.hasErrors()) {
             return "registration-pro";

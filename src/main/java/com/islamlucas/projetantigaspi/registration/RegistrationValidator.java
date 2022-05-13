@@ -23,7 +23,9 @@ public class RegistrationValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+        System.out.println(target);
         User user = (User) target;
+
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
