@@ -6,4 +6,5 @@ public interface SecurityService {
     boolean isAuthenticated();
 
     void autoLogin(String email, String password, HttpServletRequest request);
+    void autoLogin(String email, String password);
 }

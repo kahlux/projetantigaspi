@@ -40,4 +40,9 @@ public class SecurityServiceImpl implements SecurityService {
         } catch (ServletException ignore) {
         }
     }
+
+    @Override
+    public void autoLogin(String email, String password) {
+
+    }
 }

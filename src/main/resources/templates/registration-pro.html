@@ -44,6 +44,46 @@
 
         <p>Vous êtes un(e) professionnel(le) ? <a href="/sign-in/pro">Cliquez ici</a></p>
     </form>
+
+    <!-- form pour shop -->
+    <form class="card p-4 pb-2 shadow-sm border-dark border-3 rounded-3" method="POST" th:action="@{/sign-in/pro}" th:object="${shopForm}">
+        <h2>Création du commerce</h2>
+
+        <p class="mb-3">Renseignez les informations du commerce :</p>
+
+        <div class="mb-2">
+            <input type="text" th:field="*{name}" class="form-control" placeholder="nom du commerce"
+                   autofocus="autofocus">
+            <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+
+        <div class="mb-2">
+            <input type="text" th:field="*{city}" class="form-control" placeholder="Ville">
+            <span class="text-danger" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+        </div>
+
+        <div class="mb-2">
+            <input type="text" th:field="*{address}" class="form-control" placeholder="Adresse">
+            <span class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+        </div>
+        <select th:field="*{category}">
+            <option th:each="category : ${categories}"
+                    th:text="${category.libelle}"
+                    th:value="${category.id}">
+        </select>
+
+
+
+
+        <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">S'enregistrer</button>
+
+        <p>Vous êtes un(e) professionnel(le) ? <a href="/sign-in/pro">Cliquez ici</a></p>
+    </form>
+
+
+
+
+    <!-- fin form shop -->
 </div>
 </body>
 </html>

@@ -3,6 +3,9 @@ package com.islamlucas.projetantigaspi.registration;
 import com.islamlucas.projetantigaspi.security.SecurityService;
 import com.islamlucas.projetantigaspi.shop.Shop;
 import com.islamlucas.projetantigaspi.users.User;
+import com.islamlucas.projetantigaspi.shop.Category;
+import com.islamlucas.projetantigaspi.users.UserRepository;
+import com.islamlucas.projetantigaspi.shop.CategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +24,8 @@ public class RegistrationController {
     private final RegistrationService registrationService;
     private final SecurityService securityService;
     private final RegistrationValidator registrationValidator;
+
+    private final CategoryRepository categoryRepository;
 
     @GetMapping("/sign-in/user")
     public String registrationUser(Model model) {
@@ -41,6 +46,8 @@ public class RegistrationController {
 
         model.addAttribute("userForm", new User());
         model.addAttribute("shopForm", new Shop());
+        model.addAttribute("categories",categoryRepository.findAll());
+
 
         return "registration-pro";
     }
