@@ -1,6 +1,7 @@
 package com.islamlucas.projetantigaspi.shop;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -15,7 +16,8 @@ import javax.persistence.*;
 @Table(name = "cart", schema = "public")
 public class Cart {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="native")
+    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "id", nullable = false)
     private Long id;
 

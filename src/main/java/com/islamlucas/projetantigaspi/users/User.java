@@ -2,6 +2,7 @@ package com.islamlucas.projetantigaspi.users;
 
 import com.islamlucas.projetantigaspi.shop.Shop;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,7 +25,8 @@ public class User implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="native")
+    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "id")
     private Long id;
 
@@ -80,4 +82,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

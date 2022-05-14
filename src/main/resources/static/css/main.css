@@ -24,8 +24,8 @@ body {
     filter: blur(8px);
 }
 
-.navbar {
-    margin-bottom: 150px;
+.header {
+    margin-bottom: 100px;
 }
 
 .big-search-bar {
@@ -39,4 +39,15 @@ body {
 .form-control:focus {
     border-color: #28a745;
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.absolutely-centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#addModal {
+    z-index: 9999;
 }

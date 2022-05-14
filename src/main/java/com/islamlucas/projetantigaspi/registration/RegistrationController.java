@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 @AllArgsConstructor
@@ -61,7 +60,7 @@ public class RegistrationController {
 
         securityService.autoLogin(userForm.getEmail(), userForm.getPassword(), request);
 
-        return "redirect:/home";
+        return "redirect:/login";
     }
 
     @PostMapping("/sign-in/pro")
@@ -71,6 +70,7 @@ public class RegistrationController {
                               BindingResult resultShop,
                               HttpServletRequest request,
                               Model model) {
+
         registrationValidator.validate(userForm, resultUser);
         shopValidator.validate(shopForm, resultShop);
 
@@ -83,7 +83,7 @@ public class RegistrationController {
 
         securityService.autoLogin(userForm.getEmail(), userForm.getPassword(), request);
 
-        return "redirect:/home";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")

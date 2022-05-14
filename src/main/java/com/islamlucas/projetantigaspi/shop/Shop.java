@@ -2,6 +2,7 @@ package com.islamlucas.projetantigaspi.shop;
 
 import com.islamlucas.projetantigaspi.users.User;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,7 +19,8 @@ import java.util.List;
 @Table(name = "shop", schema = "public")
 public class Shop {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="native")
+    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "id")
     private Long id;
 

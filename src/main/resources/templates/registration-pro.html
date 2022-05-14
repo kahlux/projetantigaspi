@@ -11,9 +11,9 @@
 <body>
 <div class="antigaspi-background"></div>
 
-<div class="navbar" th:insert="fragments/header_simple.html :: header"></div>
+<div class="header" th:insert="fragments/header_simple.html :: header"></div>
 
-<div class="d-flex align-items-center justify-content-center absolutely-centered">
+<div class="d-flex align-items-center justify-content-center">
     <form class="d-flex card p-4 pb-2 shadow-sm border-dark border-3 rounded-3 bg-light" method="POST" th:action="@{/sign-in/pro}" >
         <h2>Création de votre compte</h2>
 
@@ -64,7 +64,8 @@
             <span class="text-danger" th:errors="${shopForm.address}"></span>
         </div>
 
-        <select th:field="${shopForm.category}">
+        <span>Votre catégorie de commerce : </span>
+        <select class="mb-4" th:field="${shopForm.category}">
             <option th:each="category : ${categories}"
                 th:text="${category.libelle}"
                 th:value="${category.id}">
