@@ -15,24 +15,22 @@
 
 <div th:insert="fragments/header :: header"></div>
 Search
-<!--
-<div  th:object="${shops}">
-  <table>
+<div  th:object="${result}">
+  <table rules="all">
     <tr>
-      <th>id</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>category id</th>
+      <th>User</th>
+      <th>Shop</th>
+      <th>Cart</th>
     </tr>
-    <tr th:each="shop : ${shops}">
-      <td th:text="${shop.getId()}"></td>
-      <td th:text="${shop.getAddress()}"></td>
-      <td th:text="${shop.getCity()}"></td>
-      <td th:text="${shop.getCategory().getLibelle()}"></td>
+    <tr>
+      <td th:text="${result.get(0)}"></td>
+      <td th:text="${result.get(1)}"></td>
+      <td th:text="${result.get(2)}"></td>
+
     </tr>
-    <table>
+
+    </table>
 </div>
--->
 
 
 </body>

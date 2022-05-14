@@ -3,9 +3,7 @@ package com.islamlucas.projetantigaspi.search;
 import com.islamlucas.projetantigaspi.registration.RegistrationValidator;
 import com.islamlucas.projetantigaspi.registration.ShopValidator;
 import com.islamlucas.projetantigaspi.security.SecurityService;
-import com.islamlucas.projetantigaspi.shop.CartRepository;
-import com.islamlucas.projetantigaspi.shop.CategoryRepository;
-import com.islamlucas.projetantigaspi.shop.Shop;
+import com.islamlucas.projetantigaspi.shop.*;
 import com.islamlucas.projetantigaspi.users.User;
 import com.islamlucas.projetantigaspi.users.UserService;
 import lombok.AllArgsConstructor;
@@ -20,6 +18,9 @@ import com.islamlucas.projetantigaspi.users.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -31,6 +32,7 @@ public class SearchController {
     private final ShopValidator shopValidator;
     private final CartRepository cartRepository;
     private final UserRepository userRepository;
+    private final ShopRepository shopRepository;
 
 
     //search form traitement
@@ -38,10 +40,24 @@ public class SearchController {
     @GetMapping("/search")
     public String search(@RequestParam("q") String q,Model model, HttpServletRequest request) {
         //trouver toutes les entités liées au texte saisi
-        String result="";
+        ArrayList<Object> result = new ArrayList<>();
         String user="";
         String shop="";
         String cart="";
+        Optional<User> userr;
+        Optional<Shop> shopp;
+        Optional<Cart> cartt;
+        userr = Optional.of(userRepository.findByEmailOrFirstNameOrLastName(q, q, q).orElse(new User()));
+        shopp = Optional.of(shopRepository.findByNameOrCityOrAddress(q, q, q).orElse(new Shop()));
+        cartt = Optional.of(cartRepository.findByLibelleOrDescription(q, q).orElse(new Cart()));
+         user="email : "+userr.get().getEmail()+" firstname: "+userr.get().getFirstName()+" lastname: "+userr.get().getLastName();
+         shop ="name: "+shopp.get().getName()+" city:"+shopp.get().getCity()+" address: "+shopp.get().getAddress();
+         cart ="libelle: "+cartt.get().getLibelle()+" description: "+cartt.get().getDescription();
+
+        result.add(user);
+        result.add(shop);
+        result.add(cart);
+
         model.addAttribute("result",result);
 
         return "search";

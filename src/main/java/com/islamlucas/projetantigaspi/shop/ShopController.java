@@ -20,16 +20,7 @@ public class ShopController {
     private final SecurityService securityService;
     private final CartRepository cartRepository;
 
-    @GetMapping("/pro/home")
-    public String accueilPro(Model model) {
-        Long userLoggedId = securityService.getUserLogged().getId();
-        Shop shop = shopRepository.getById(userLoggedId);
-        List<Cart> carts = cartRepository.findAllByShopId(shop.getId());
 
-        model.addAttribute("carts", carts);
-
-        return "pro/pro-panel";
-    }
 
     @GetMapping("/shops")
     public String accueilShops(Model model) {
