@@ -30,4 +30,13 @@ public class ShopController {
 
         return "pro/pro-panel";
     }
+
+    @GetMapping("/shops")
+    public String accueilShops(Model model) {
+        Long userLoggedId = securityService.getUserLogged().getId();
+        List<Shop> lshop = shopRepository.findAll();
+        model.addAttribute("shops",lshop);
+        return "shops";
+    }
+
 }
