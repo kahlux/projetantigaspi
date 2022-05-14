@@ -5,10 +5,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CartRepository extends JpaRepository<Cart, Long> {
     List<Cart> findAllByShop(Shop shop);
-    List<Cart> findAllByShopId(Long id);
     List<Cart> findAllByShop_Category_Id(Long catId);
+
+    List<Cart> findAllByShopId(Long id);
+
+    Optional<Cart> findByLibelleOrDescription(String libelle,String description);
 }
