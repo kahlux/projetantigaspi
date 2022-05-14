@@ -69,11 +69,13 @@ public class RegistrationController {
                               BindingResult resultUser,
                               @ModelAttribute("shopForm") Shop shopForm,
                               BindingResult resultShop,
-                              HttpServletRequest request) {
+                              HttpServletRequest request,
+                              Model model) {
         registrationValidator.validate(userForm, resultUser);
         shopValidator.validate(shopForm, resultShop);
 
         if (resultUser.hasErrors() || resultShop.hasErrors()) {
+            model.addAttribute("categories", categoryRepository.findAll());
             return "registration-pro";
         }
 
