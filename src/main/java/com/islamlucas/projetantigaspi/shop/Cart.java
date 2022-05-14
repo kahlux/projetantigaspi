@@ -1,11 +1,8 @@
 package com.islamlucas.projetantigaspi.shop;
 
-import com.islamlucas.projetantigaspi.shop.Shop;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter

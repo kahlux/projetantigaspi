@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .disable()
             .authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/images/**", "/sign-in/**", "/login*", "/favicon.ico").permitAll()
-                .antMatchers("/pro/**").hasRole("SELLER")
+                .antMatchers("/pro/**").hasAuthority("SELLER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

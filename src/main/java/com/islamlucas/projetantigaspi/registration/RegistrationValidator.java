@@ -24,40 +24,41 @@ public class RegistrationValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         System.out.println(target);
-        User user = (User) target;
+        if(target instanceof User) {
+            User user = (User) target;
 
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "NotEmpty");
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "NotEmpty");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "NotEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "NotEmpty");
+            if(userRepository.findByEmail(user.getEmail()).isPresent()) {
+                errors.rejectValue("email", "Duplicate.userForm.email");
+            }
 
-        if(userRepository.findByEmail(user.getEmail()).isPresent()) {
-            errors.rejectValue("email", "Duplicate.userForm.email");
-        }
+            if(!emailValidator.test(user.getEmail())) {
+                errors.rejectValue("email", "Malformed.email");
+            }
 
-        if(!emailValidator.test(user.getEmail())) {
-            errors.rejectValue("email", "Malformed.email");
-        }
+            if(user.getEmail().length() > 64) {
+                errors.rejectValue("email", "Size.userForm");
+            }
 
-        if(user.getEmail().length() > 64) {
-            errors.rejectValue("email", "Size.userForm");
-        }
+            if (user.getPassword().length() < 8) {
+                errors.rejectValue("password", "Size.userForm.password");
+            }
 
-        if (user.getPassword().length() < 8) {
-            errors.rejectValue("password", "Size.userForm.password");
-        }
+            if(user.getPassword().length() > 64) {
+                errors.rejectValue("password", "Size.userForm");
+            }
 
-        if(user.getPassword().length() > 64) {
-            errors.rejectValue("password", "Size.userForm");
-        }
+            if(user.getFirstName().length() > 64) {
+                errors.rejectValue("firstName", "Size.userForm");
+            }
 
-        if(user.getFirstName().length() > 64) {
-            errors.rejectValue("firstName", "Size.userForm");
-        }
-
-        if(user.getLastName().length() > 64) {
-            errors.rejectValue("lastName", "Size.userForm");
+            if(user.getLastName().length() > 64) {
+                errors.rejectValue("lastName", "Size.userForm");
+            }
         }
     }
 }

@@ -3,76 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Enregistrement</title>
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/css/main.css}" rel="stylesheet">
-    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
-    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <script th:src="@{/js/jquery-3.6.0.min.js}" src="../static/js/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}" src="../static/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="antigaspi-background"></div>
 
-<div th:insert="fragments/header_simple.html :: header"></div>
+<div class="navbar" th:insert="fragments/header_simple.html :: header"></div>
 
-<div class="d-flex h-100 align-items-center justify-content-center">
-    <form class="card p-4 pb-2 shadow-sm border-dark border-3 rounded-3" method="POST" th:action="@{/sign-in/pro}" >
-        <div th:object="${userForm}">
+<div class="d-flex align-items-center justify-content-center absolutely-centered">
+    <form class="d-flex card p-4 pb-2 shadow-sm border-dark border-3 rounded-3 bg-light" method="POST" th:action="@{/sign-in/pro}" >
         <h2>Création de votre compte</h2>
 
-        <p class="mb-3">Renseignez vos informations :</p>
+        <!-- Partie utilisateur -->
+
+        <p class="mb-3">Renseignez vos informations personnelles : </p>
 
         <div class="mb-2">
-            <input type="text" th:field="*{firstName}" class="form-control" placeholder="Prénom"
+            <input type="text" th:field="${userForm.firstName}" class="form-control" placeholder="Prénom"
                    autofocus="autofocus">
-            <span class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+            <span class="text-danger" th:errors="${userForm.firstName}"></span>
         </div>
 
         <div class="mb-2">
-            <input type="text" th:field="*{lastName}" class="form-control" placeholder="Nom de famille">
-            <span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+            <input type="text" th:field="${userForm.lastName}" class="form-control" placeholder="Nom de famille">
+            <span class="text-danger" th:errors="${userForm.lastName}"></span>
         </div>
 
         <div class="mb-2">
-            <input type="text" th:field="*{email}" class="form-control" placeholder="E-mail">
-            <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            <input type="text" th:field="${userForm.email}" class="form-control" placeholder="E-mail">
+            <span class="text-danger" th:errors="${userForm.email}"></span>
         </div>
 
         <div class="mb-3">
-            <input type="password" th:field="*{password}" class="form-control" placeholder="Mot de passe">
-            <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            <input type="password" th:field="${userForm.password}" class="form-control" placeholder="Mot de passe">
+            <span class="text-danger" th:errors="${userForm.password}"></span>
         </div>
+
+        <!-- Partie détail du commerce -->
+
+        <h2>Création du commerce</h2>
+
+        <p class="mb-3">Renseignez les informations du commerce :</p>
+
+        <div class="mb-2">
+            <input type="text" th:field="${shopForm.name}" class="form-control" placeholder="Nom du commerce"
+                   autofocus="autofocus">
+            <span class="text-danger" th:errors="${shopForm.name}"></span>
         </div>
 
-        <div th:object="${shopForm}">
-            <h2>Création du commerce</h2>
-
-            <p class="mb-3">Renseignez les informations du commerce :</p>
-
-            <div class="mb-2">
-                <input type="text" th:field="*{name}" class="form-control" placeholder="nom du commerce"
-                       autofocus="autofocus">
-                <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-            </div>
-
-            <div class="mb-2">
-                <input type="text" th:field="*{city}" class="form-control" placeholder="Ville">
-                <span class="text-danger" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
-            </div>
-
-            <div class="mb-2">
-                <input type="text" th:field="*{address}" class="form-control" placeholder="Adresse">
-                <span class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
-            </div>
-            <select th:field="*{category}">
-                <option th:each="category : ${categories}"
-                        th:text="${category.libelle}"
-                        th:value="${category.id}">
-            </select>
+        <div class="mb-2">
+            <input type="text" th:field="${shopForm.city}" class="form-control" placeholder="Ville">
+            <span class="text-danger" th:errors="${shopForm.city}"></span>
         </div>
+
+        <div class="mb-2">
+            <input type="text" th:field="${shopForm.address}" class="form-control" placeholder="Adresse">
+            <span class="text-danger" th:errors="${shopForm.address}"></span>
+        </div>
+
+        <select th:field="${shopForm.category}">
+            <option th:each="category : ${categories}"
+                th:text="${category.libelle}"
+                th:value="${category.id}">
+        </select>
 
         <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">S'enregistrer</button>
-
-        <p>Vous êtes un(e) professionnel(le) ? <a href="/sign-in/pro">Cliquez ici</a></p>
-
     </form>
 
     <!-- form pour shop -->
@@ -83,21 +81,21 @@
         <p class="mb-3">Renseignez les informations du commerce :</p>
 
         <div class="mb-2">
-            <input type="text" th:field="*{name}" class="form-control" placeholder="nom du commerce"
+            <input type="text" th:field="${}" class="form-control" placeholder="nom du commerce"
                    autofocus="autofocus">
-            <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            <span class="text-danger" th:errors="${}"></span>
         </div>
 
         <div class="mb-2">
-            <input type="text" th:field="*{city}" class="form-control" placeholder="Ville">
-            <span class="text-danger" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+            <input type="text" th:field="${}" class="form-control" placeholder="Ville">
+            <span class="text-danger" th:errors="${}"></span>
         </div>
 
         <div class="mb-2">
-            <input type="text" th:field="*{address}" class="form-control" placeholder="Adresse">
-            <span class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+            <input type="text" th:field="${}" class="form-control" placeholder="Adresse">
+            <span class="text-danger" th:errors="${}"></span>
         </div>
-        <select th:field="*{category}">
+        <select th:field="${}">
             <option th:each="category : ${categories}"
                     th:text="${category.libelle}"
                     th:value="${category.id}">
